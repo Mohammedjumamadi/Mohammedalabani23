@@ -19,28 +19,24 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
 
-            // إضافة الحقول الجديدة
-            $table->integer('age')->nullable(); // العمر
-            $table->string('education')->nullable(); // المستوى التعليمي
-            $table->string('experience')->nullable(); // الخبرة أو المهنة
-            $table->string('address')->nullable(); // العنوان
-            $table->string('phone')->nullable(); // رقم الهاتف
+            // الحقول الإضافية
+            $table->integer('age')->nullable();
+            $table->string('education')->nullable();
+            $table->string('experience')->nullable();
+            $table->string('address')->nullable();
+            $table->string('phone')->nullable();
+            $table->enum('gender', ['male', 'female'])->nullable();
+            $table->enum('role', ['user', 'admin'])->default('user');
 
-            // إضافة الحقل gender
-            $table->enum('gender', ['male', 'female'])->nullable(); // الجنس
+            // الرقم الوطني
+            $table->string('national_id')->unique();
 
-            // إضافة عمود role
-            $table->enum('role', ['user', 'admin'])->default('user'); // دور المستخدم
+            // نوع التطوع
+            $table->enum('volunteer_type', ['technical', 'physical', 'psychological', 'social', 'administrative', 'media', 'medical', 'educational']);
 
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
-    {
-        Schema::dropIfExists('users');
-    }
+
 };
