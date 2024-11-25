@@ -1,6 +1,6 @@
 @section('content')
 <div class="container mt-5">
-    <h2 class="text-right mb-4" style="color: #d32f2f; font-weight: bold; font-size: 28px;"></h2>
+    <h2 class="text-right mb-4" style="color: #d32f2f; font-weight: bold; font-size: 28px;">تعديل بيانات المستخدم</h2>
 
     <div class="card shadow-lg border-0" style="border-radius: 15px; overflow: hidden;">
         <div class="card-header bg-primary text-white text-center">
@@ -18,7 +18,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text bg-light"><i class="fas fa-user"></i></span>
                         </div>
-                        <input type="text" class="form-control" id="name" name="name" value="{{ $user->name }}" placeholder="أدخل الاسم الكامل" required style="direction: rtl;">
+                        <input type="text" class="form-control" id="name" name="name" value="{{ old('name', $user->name) }}" placeholder="أدخل الاسم الكامل" required>
                     </div>
                 </div>
 
@@ -29,7 +29,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text bg-light"><i class="fas fa-envelope"></i></span>
                         </div>
-                        <input type="email" class="form-control" id="email" name="email" value="{{ $user->email }}" placeholder="example@example.com" required style="direction: rtl;">
+                        <input type="email" class="form-control" id="email" name="email" value="{{ old('email', $user->email) }}" placeholder="example@example.com" required>
                     </div>
                 </div>
 
@@ -40,7 +40,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text bg-light"><i class="fas fa-calendar-alt"></i></span>
                         </div>
-                        <input type="number" class="form-control" id="age" name="age" value="{{ $user->age }}" placeholder="أدخل العمر" required style="direction: rtl;">
+                        <input type="number" class="form-control" id="age" name="age" value="{{ old('age', $user->age) }}" placeholder="أدخل العمر" required>
                     </div>
                 </div>
 
@@ -51,7 +51,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text bg-light"><i class="fas fa-map-marker-alt"></i></span>
                         </div>
-                        <input type="text" class="form-control" id="address" name="address" value="{{ $user->address }}" placeholder="أدخل العنوان" required style="direction: rtl;">
+                        <input type="text" class="form-control" id="address" name="address" value="{{ old('address', $user->address) }}" placeholder="أدخل العنوان" required>
                     </div>
                 </div>
 
@@ -62,7 +62,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text bg-light"><i class="fas fa-phone"></i></span>
                         </div>
-                        <input type="tel" class="form-control" id="phone" name="phone" value="{{ $user->phone }}" placeholder="أدخل رقم الهاتف" required style="direction: rtl;">
+                        <input type="tel" class="form-control" id="phone" name="phone" value="{{ old('phone', $user->phone) }}" placeholder="أدخل رقم الهاتف" required>
                     </div>
                 </div>
 
@@ -74,12 +74,11 @@
                             <span class="input-group-text bg-light"><i class="fas fa-graduation-cap"></i></span>
                         </div>
                         <select class="form-control" id="education" name="education" required>
-                            <option value="" disabled>اختر المستوى التعليمي</option>
-                            <option value="ثانوي" {{ $user->education == 'ثانوي' ? 'selected' : '' }}>ثانوي</option>
-                            <option value="دبلوم" {{ $user->education == 'دبلوم' ? 'selected' : '' }}>دبلوم</option>
-                            <option value="بكالوريوس" {{ $user->education == 'بكالوريوس' ? 'selected' : '' }}>بكالوريوس</option>
-                            <option value="ماجستير" {{ $user->education == 'ماجستير' ? 'selected' : '' }}>ماجستير</option>
-                            <option value="دكتوراه" {{ $user->education == 'دكتوراه' ? 'selected' : '' }}>دكتوراه</option>
+                            <option value="ثانوي" {{ old('education', $user->education) == 'ثانوي' ? 'selected' : '' }}>ثانوي</option>
+                            <option value="دبلوم" {{ old('education', $user->education) == 'دبلوم' ? 'selected' : '' }}>دبلوم</option>
+                            <option value="بكالوريوس" {{ old('education', $user->education) == 'بكالوريوس' ? 'selected' : '' }}>بكالوريوس</option>
+                            <option value="ماجستير" {{ old('education', $user->education) == 'ماجستير' ? 'selected' : '' }}>ماجستير</option>
+                            <option value="دكتوراه" {{ old('education', $user->education) == 'دكتوراه' ? 'selected' : '' }}>دكتوراه</option>
                         </select>
                     </div>
                 </div>
@@ -91,7 +90,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text bg-light"><i class="fas fa-briefcase"></i></span>
                         </div>
-                        <input type="text" class="form-control" id="profession" name="profession" value="{{ $user->profession }}" placeholder="أدخل الخبرة أو المهنة" required style="direction: rtl;">
+                        <input type="text" class="form-control" id="profession" name="profession" value="{{ old('profession', $user->profession) }}" placeholder="أدخل الخبرة أو المهنة" required>
                     </div>
                 </div>
 
@@ -102,24 +101,53 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text bg-light"><i class="fas fa-venus-mars"></i></span>
                         </div>
-                        <select class="form-control" id="gender" name="gender" required>
-                            <option value="" disabled>اختر الجنس</option>
-                            <option value="ذكر" {{ $user->gender == 'ذكر' ? 'selected' : '' }}>ذكر</option>
-                            <option value="أنثى" {{ $user->gender == 'أنثى' ? 'selected' : '' }}>أنثى</option>
+                        <select name="gender" class="form-control">
+                            <option value="ذكر" {{ old('gender', $user->gender) == 'ذكر' ? 'selected' : '' }}>ذكر</option>
+                            <option value="أنثى" {{ old('gender', $user->gender) == 'أنثى' ? 'selected' : '' }}>أنثى</option>
                         </select>
                     </div>
                 </div>
 
-                <!-- زر التحديث -->
-                <div class="d-flex justify-content-end">
-                    <button type="submit" class="btn btn-primary px-5 py-2" style="font-size: 18px; font-weight: bold;">
-                        <i class="fas fa-save"></i> تحديث المستخدم
-                    </button>
+                <!-- رقم الهوية الوطنية -->
+                <div class="form-group mb-4">
+                    <label for="national_id" class="form-label" style="font-weight: bold; font-size: 16px;">رقم الهوية الوطنية <span class="text-danger">*</span></label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-light"><i class="fas fa-id-card"></i></span>
+                        </div>
+                        <input type="text" class="form-control" id="national_id" name="national_id" value="{{ old('national_id', $user->national_id) }}" placeholder="أدخل رقم الهوية" required>
+                    </div>
+                </div>
+
+                <!-- نوع المتطوع -->
+                <div class="form-group mb-4">
+                    <label for="volunteer_type" class="form-label" style="font-weight: bold; font-size: 16px;">نوع المتطوع <span class="text-danger">*</span></label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-light"><i class="fas fa-users"></i></span>
+                        </div>
+                        <select class="form-control" id="volunteer_type" name="volunteer_type" required>
+                            <option value="technical">الدعم الفني</option>
+                            <option value="physical">الدعم الجسدي</option>
+                            <option value="psychological">الدعم النفسي</option>
+                            <option value="social">الدعم الاجتماعي</option>
+                            <option value="administrative">الدعم الإداري</option>
+                            <option value="media">الدعم الإعلامي</option>
+                            <option value="medical">الدعم الطبي</option>
+                            <option value="educational">الدعم التعليمي والتوعوي</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group text-center mt-4">
+                    <button type="submit" class="btn btn-success btn-lg" style="font-size: 18px; font-weight: bold; padding: 10px 20px;">تحديث البيانات</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
+
+
 
 <!-- إضافة روابط Bootstrap و FontAwesome -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
