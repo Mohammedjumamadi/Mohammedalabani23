@@ -181,9 +181,41 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text bg-light"><i class="fas fa-venus-mars"></i></span>
                             </div>
-                            <select class="form-control" id="gender" name="gender" required>
-                                <option value="ذكر">ذكر</option>
-                                <option value="أنثى">أنثى</option>
+                            <select name="gender" class="form-control">
+                                <option value="ذكر" {{ old('gender') == 'ذكر' ? 'selected' : '' }}>ذكر</option>
+                                <option value="أنثى" {{ old('gender') == 'أنثى' ? 'selected' : '' }}>أنثى</option>
+                            </select>
+
+                        </div>
+                    </div>
+
+                    <!-- الرقم الوطني -->
+                    <div class="form-group mb-4">
+                        <label for="national_id" class="form-label" style="font-weight: bold; font-size: 16px;">الرقم الوطني <span class="text-danger">*</span></label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text bg-light"><i class="fas fa-id-card"></i></span>
+                            </div>
+                            <input type="text" class="form-control" id="national_id" name="national_id" placeholder="أدخل الرقم الوطني" required>
+                        </div>
+                    </div>
+
+                    <!-- نوع المتطوع -->
+                    <div class="form-group mb-4">
+                        <label for="volunteer_type" class="form-label" style="font-weight: bold; font-size: 16px;">نوع المتطوع <span class="text-danger">*</span></label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text bg-light"><i class="fas fa-users"></i></span>
+                            </div>
+                            <select class="form-control" id="volunteer_type" name="volunteer_type" required>
+                                <option value="technical">الدعم الفني</option>
+                                <option value="physical">الدعم الجسدي</option>
+                                <option value="psychological">الدعم النفسي</option>
+                                <option value="social">الدعم الاجتماعي</option>
+                                <option value="administrative">الدعم الإداري</option>
+                                <option value="media">الدعم الإعلامي</option>
+                                <option value="medical">الدعم الطبي</option>
+                                <option value="educational">الدعم التعليمي والتوعوي</option>
                             </select>
                         </div>
                     </div>
@@ -199,6 +231,12 @@
                         </div>
                     </div>
 
+                    <div class="form-group">
+                        <label for="password_confirmation">تأكيد كلمة المرور</label>
+                        <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" required>
+                    </div>
+
+
                     <!-- زر الإرسال -->
                     <button type="submit" class="btn btn-danger btn-block mt-4">إضافة المستخدم</button>
                 </form>
@@ -208,6 +246,7 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
 </body>
+
 </html>
