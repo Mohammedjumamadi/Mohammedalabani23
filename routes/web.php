@@ -11,7 +11,6 @@ use App\Http\Controllers\UserManagementController;
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\EmployeeController;
-
 Route::get('/home', function () {
     return view('home');  // صفحة home
 })->name('home');
@@ -19,7 +18,7 @@ Route::get('/home', function () {
 // مسار لعرض صفحة التسجيل
 Route::get('/register', function () {
     return view('register');  // عرض نموذج التسجيل
-})->name('registerForm');
+})->name('register');
 
 // مسار POST لمعالجة التسجيل
 Route::post('/register', [AuthController::class, 'register'])->name('register');
@@ -208,23 +207,13 @@ Route::post('/notifications/mark-as-read/{id}', [NotificationController::class, 
 
 
 
-Route::prefix('admin')->group(function () {
-    // عرض قائمة الموظفين
+Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::get('/employees', [EmployeeController::class, 'index'])->name('admin.employees.index');
-
-    // عرض صفحة إضافة موظف جديد
     Route::get('/employees/create', [EmployeeController::class, 'create'])->name('admin.employees.create');
-
-    // تخزين الموظف الجديد
     Route::post('/employees', [EmployeeController::class, 'store'])->name('admin.employees.store');
-
-    // حذف موظف
+    Route::get('/employees/{id}/edit', [EmployeeController::class, 'edit'])->name('admin.employees.edit');
+    Route::put('/employees/{id}', [EmployeeController::class, 'update'])->name('admin.employees.update');
     Route::delete('/employees/{id}', [EmployeeController::class, 'destroy'])->name('admin.employees.destroy');
-
-    // الأنشطة
-    Route::get('/activities', [ActivityController::class, 'index'])->name('admin.activities.index');
-    Route::get('/activities/create', [ActivityController::class, 'create'])->name('admin.activities.create');
-    Route::post('/activities', [ActivityController::class, 'store'])->name('admin.activities.store');
-    Route::delete('/activities/{id}', [ActivityController::class, 'destroy'])->name('admin.activities.destroy');
 });
+
 
