@@ -31,6 +31,8 @@
                     <th>الخبرة أو المهنة</th>
                     <th>رقم الهاتف</th>
                     <th>الجنس</th>
+                    <th>الرقم الوطني</th>
+                    <th>نوع المتطوع</th>
                     <th>إجراءات</th>
                 </tr>
             </thead>
@@ -42,10 +44,12 @@
                         <td>{{ $user->email }}</td>
                         <td>{{ $user->age }}</td>
                         <td>{{ $user->address }}</td>
-                        <td>{{ $user->phone }}</td>
                         <td>{{ $user->education }}</td>
-                        <td>{{ $user->experience}}</td>
-                        <td>{{ $user->gender}}</td>
+                        <td>{{ $user->experience }}</td>
+                        <td>{{ $user->phone }}</td>
+                        <td>{{ $user->gender }}</td>
+                        <td>{{ $user->national_id }}</td>
+                        <td>{{ $user->volunteer_type }}</td>
                         <td>
                             <a href="{{ route('admin.users.edit', $user->id) }}" class="btn btn-warning">
                                 <i class="fas fa-edit"></i> تعديل
