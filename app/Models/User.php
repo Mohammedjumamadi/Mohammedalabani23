@@ -11,7 +11,7 @@ class User extends Authenticatable
 
     // الحقول القابلة للتعبئة
     protected $fillable = [
-        'name', 'email', 'password', 'age', 'education', 'experience', 'address', 'phone', 'role', 'gender', // إضافة الجنس
+        'name', 'email', 'password', 'age', 'education', 'experience', 'address', 'phone', 'role', 'gender', 'national_id', 'volunteer_type',
     ];
 
     // الحقول المخفية عند استرجاع البيانات
